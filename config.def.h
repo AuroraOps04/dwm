@@ -1,5 +1,9 @@
 /* See LICENSE file for copyright and license details. */
-
+#include "X11/Xlib.h"
+#include "util.h"
+#include "X11/Xft/Xft.h"
+#include "X11/keysymdef.h"
+#include "drw.h"
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
@@ -31,7 +35,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "󰲸", "", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -80,6 +84,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_s,      togglesticky,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
